@@ -27,7 +27,9 @@ Because wd requires a webdriver server URL to function, you will need to use one
 Furthermore, you will need to configure the "driver" via the "builders" property as described here:
 https://github.com/paypal/nemo/blob/master/README.md#builders-optional
 
-Specifically, ensure you set the "usingServer" builder like the example below:
+A couple examples of driver configurations follow:
+
+### externally started standalone
 
 ```js
 {
@@ -38,6 +40,24 @@ Specifically, ensure you set the "usingServer" builder like the example below:
       }],
       "usingServer": ["http://localhost:4444/wd/hub"]
     }
+  },
+  "plugins": {
+    "wdb": {
+      "module": "nemo-wd-bridge"
+    }
+  }
+}
+```
+
+### Nemo-managed standalone
+
+```js
+{
+  "driver": {
+    "jar": "/Users/medelman/bin/selenium-server-standalone-2.47.1.jar",
+    "browser": "firefox",
+    "server": "localhost",
+    "local": true
   },
   "plugins": {
     "wdb": {
