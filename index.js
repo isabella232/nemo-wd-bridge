@@ -53,8 +53,13 @@ var WDB = function (externalLib, wd) {
                 });
         };
         driver.getSession().then(function (session) {
-            wdDriver.attach(session.getId());
-            deferred.resolve(wdDriver);
+            wdDriver.attach(session.getId(), function (err, caps) {
+                if (err) {
+                    return deferred.reject(err);
+                }
+                deferred.resolve(wdDriver);
+            });
+
         });
         return deferred.promise;
     };
