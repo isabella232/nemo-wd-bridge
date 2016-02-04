@@ -1,6 +1,6 @@
 {
   "name": "nemo-wd-bridge",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nemo plugin to add wd driver capability to nemo",
   "main": "index.js",
   "scripts": {
