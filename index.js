@@ -52,6 +52,8 @@ var WDB = function (externalLib, wd) {
                     });
                 });
         };
+        //add the wd module instance
+        wdDriver.wd = wd;
         driver.getSession().then(function (session) {
             wdDriver.attach(session.getId(), function (err, caps) {
                 if (err) {
