@@ -9,12 +9,10 @@ module.exports = {
     'setup': function (nemo, callback) {
         var wdb = WDB(nemo.wd, wd);
         var builder = new nemo.wd.Builder();
-        var builders = nemo._config.get('driver:builders');
-        if (builders !== undefined) {
-            Object.keys(builders).forEach(function (bldr) {
-                builder = builder[bldr].apply(builder, builders[bldr]);
-            });
-        }
+        var builders = nemo._config.get('driver').builders || {};
+        Object.keys(builders).forEach(function (bldr) {
+            builder = builder[bldr].apply(builder, builders[bldr]);
+        });
         wdb(builder, nemo.driver)
             .then(function (wdDriver) {
                 nemo.wdb = wdDriver;
@@ -66,3 +64,4 @@ var WDB = function (externalLib, wd) {
         return deferred.promise;
     };
 };
+
